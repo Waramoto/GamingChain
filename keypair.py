@@ -12,6 +12,5 @@ class KeyPair:
         self.publicKey = kp[0]
         self.privateKey = kp[1]
 
-    def printKeyPair(self):
-        print(f'Приватный ключ: {self.privateKey}')
-        print(f'Публичный ключ: {self.publicKey}')
+    def __str__(self):
+        return f'Приватный ключ: {self.privateKey}\nПубличный ключ: {self.publicKey}'
