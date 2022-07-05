@@ -1,4 +1,5 @@
 from keypair import KeyPair
+from signature import Signature
 
 
 class Account:
@@ -9,7 +10,7 @@ class Account:
         self.__genAccount()
 
     def __genAccount(self):
-        kp = KeyPair(16)
+        kp = KeyPair(8)
         self.addKeyPairToWallet(kp)
         self.accountID = kp.publicKey[0] + kp.publicKey[1]
 
@@ -25,5 +26,8 @@ class Account:
     def getWalletIndex(self, index):
         return self.__wallet[index]
 
+    def signData(self, message: int, index: int):
+        return Signature.signData(message, self.getWalletIndex(index))
+
     def __str__(self):
-        return f'ID аккаунта: {self.accountID}\nБаланс аккаунта: {self.__balance}'
+        return f'\nID аккаунта: {self.accountID}\nБаланс аккаунта: {self.__balance}\n'

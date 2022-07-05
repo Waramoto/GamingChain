@@ -13,4 +13,4 @@ class KeyPair:
         self.privateKey = kp[1]
 
     def __str__(self):
-        return f'Приватный ключ: {self.privateKey}\nПубличный ключ: {self.publicKey}'
+        return f'\nПриватный ключ: {self.privateKey}\nПубличный ключ: {self.publicKey}\n'

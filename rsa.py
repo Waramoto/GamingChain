@@ -48,7 +48,7 @@ def encrypt(public_key, m):
         c = (m ** e) % n
         return c
     else:
-        return None
+        raise Exception('Сообщение m должно быть целым числом в интервале от 0 до n-1, взаимно простым с n')
 
 
 def decrypt(private_key, c):
