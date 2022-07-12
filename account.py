@@ -5,7 +5,7 @@ from signature import Signature
 class Account:
     def __init__(self):
         self.accountID = None
-        self.__wallet = []
+        self.wallet = []
         self.__balance = 0
         self.__genAccount()
 
@@ -15,7 +15,7 @@ class Account:
         self.accountID = kp.publicKey[0] + kp.publicKey[1]
 
     def addKeyPairToWallet(self, key_pair: KeyPair):
-        self.__wallet.append(key_pair)
+        self.wallet.append(key_pair)
 
     def updateBalance(self, balance: int):
         self.__balance = balance
@@ -24,7 +24,7 @@ class Account:
         return self.__balance
 
     def getWalletIndex(self, index):
-        return self.__wallet[index]
+        return self.wallet[index]
 
     def signData(self, message: int, index: int):
         return Signature.signData(message, self.getWalletIndex(index))

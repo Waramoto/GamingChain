@@ -17,9 +17,13 @@ class Operation:
         self.signature = signature
 
     @staticmethod
-    def verifyOperation(operation, sender_pub_key):
-        return operation.amount <= operation.sender.getBalance() and \
-               Signature.verifySignature(operation.signature, sender_pub_key, operation.amount)
+    def verifyOperation(operation):
+        verify_signature = False
+        for key_pair in operation.sender.wallet:
+            if Signature.verifySignature(operation.signature, key_pair.publicKey, operation.amount):
+                verify_signature = True
+                break
+        return operation.amount <= operation.sender.getBalance() and verify_signature
 
     def __str__(self):
         return f'\nОтправитель: {self.sender}\nПолучатель: {self.receiver}' \

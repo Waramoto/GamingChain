@@ -1,8 +1,6 @@
+from typing import List
 from hash import Hash
 from operation import Operation
-from typing import List
-# from account import Account
-# from signature import Signature
 
 
 class Transaction:
@@ -20,22 +18,8 @@ class Transaction:
             self.operations += str(op)
         self.transactionID = Hash.toSHA1(self.operations + str(self.nonce))
 
+    def printOperations(self):
+        print(f'\nСписок операций транзакции:\n{self.operations}\n')
+
     def __str__(self):
-        return f'\nID транзакции: {self.transactionID}\nNonce: {self.nonce}' \
-               f'\nСписок операций транзакции:\n{self.operations}\n'
-
-
-# acc_sender = Account()
-# acc_sender.updateBalance(10)
-# kp = acc_sender.getWalletIndex(0)
-#
-# acc_receiver = Account()
-# acc_receiver.updateBalance(3)
-#
-# cash = 4
-# sign = Signature.signData(kp.privateKey, cash)
-#
-# opera = Operation(acc_sender, acc_receiver, cash, sign)
-# op_list = [opera]
-# trans = Transaction(op_list, 3)
-# print(trans)
+        return f'\nID транзакции: {self.transactionID}\nNonce: {self.nonce}\n'
